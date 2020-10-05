@@ -78,7 +78,6 @@ export default class MessageField extends Component {
                     <input
                         // описываем, что мы хотим связать ref <TextInput>
                         // с `textInput` созданным в конструкторе
-
                         type="text"
                         ref={ this.textInput }
                         value={this.state.text}
