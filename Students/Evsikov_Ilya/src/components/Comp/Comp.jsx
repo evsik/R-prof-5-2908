@@ -1,51 +1,33 @@
 import './style.css';
-
 import React from 'react';
-import {Component} from 'react';
+import { Component } from 'react';
 import InputComp from '../CompInputTest/CompInputTest.jsx';
 import FieldComp from '../CompFieldTest/CompFieldTest.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import  { sendMessage } from '../../store/actions/messages-actions';
 
-export default class Comp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            messages: [
-                {
-                    sender: '12345',
-                    text: 'Hello'
-                },
-                {
-                    sender: '12345',
-                    text: 'I am your father'
-                },
-                {
-                    sender: null,
-                    text: 'Hello'
-                },
-                {
-                    sender: null,
-                    text: 'Nooooooo'
-                }
-            ]
-        }
-    }
+class MessageField extends Component {
 
-    sendMessage = (text) => {
-        this.setState({
-            messages: [...this.state.messages, {
-                sender: this.props.name,
-                text: text
-            }
-            ]
-        });
+    send = (text, sender = 'Me') => {
+        this.props.sendMessage(text, sender);
     }
 
     render() {
         return (
             <div className="d-flex flex-column">
-                <FieldComp messages={this.state.messages}/>
-                <InputComp send={this.sendMessage}/>
+                <FieldComp messages = { this.props.messages } />
+                <InputComp send = { this.send } />
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ msgReducer }) => ({
+    messages: msgReducer.messages
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
+

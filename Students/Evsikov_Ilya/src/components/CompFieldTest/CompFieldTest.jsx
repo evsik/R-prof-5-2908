@@ -17,8 +17,8 @@ export default class FieldComp extends Component {
         });
 
         return (
-            <div className="test">
-                <div>
+            <div className="d-flex flex-column align-items-center msgField">
+                <div className="chatField">
                     {contentArray}
                 </div>
             </div>

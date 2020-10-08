@@ -26,10 +26,10 @@ export default class Layout extends Component {
             <StylesProvider>
                 <div className="main">
                     <Head/>
-                    <h1>Chat: {this.props.chatId}</h1>
+                    <h1>Chat: {this.props.chatTitle}</h1>
                     <div className="d-flex justify-content-around">
-                        <Chat id={this.props.chatId}/>
-                        <MessageField name="12345"/>
+                        <Chat/>
+                        <MessageField name="Bot"/>
                     </div>
                 </div>
             </StylesProvider>
